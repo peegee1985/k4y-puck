@@ -2,10 +2,6 @@ name: Publish verified K4Y Puck firmware
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/publish-staged-firmware.yml"
-      - "staging/K4Y-Puck-231.bin.xz"
 
 permissions:
   contents: write
@@ -18,12 +14,12 @@ jobs:
   verify-and-publish:
     runs-on: ubuntu-latest
     env:
-      VERSION: "231"
-      VERSION_NAME: "0.3.2"
-      STAGED_ARTIFACT: "staging/K4Y-Puck-231.bin.xz"
-      RELEASE_ARTIFACT: "K4Y-Puck-231.bin"
-      EXPECTED_SIZE: "1377248"
-      EXPECTED_SHA256: "8caf3870ac4934b792decdd6ab65f0fe6b202273d00fbd5ba916ac8d76a6a956"
+      VERSION: "232"
+      VERSION_NAME: "0.3.3"
+      STAGED_ARTIFACT: "staging/K4Y-Puck-232.bin.xz"
+      RELEASE_ARTIFACT: "K4Y-Puck-232.bin"
+      EXPECTED_SIZE: "1390448"
+      EXPECTED_SHA256: "ac7319121d54ffdbc4ea51020021700826fb82ab52e1a3767fcf820630f771ae"
 
     steps:
       - name: Checkout exact release commit
@@ -54,7 +50,7 @@ jobs:
           import pathlib
           import sys
           image = pathlib.Path(sys.argv[1]).read_bytes()
-          if len(image) != int("1377248"):
+          if len(image) != int("1390448"):
               raise SystemExit("Unexpected firmware size")
           if not image or image[0] != 0xE9:
               raise SystemExit("Invalid ESP application magic")

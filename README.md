@@ -2,13 +2,19 @@
 
 Public release channel for verified K4Y Puck firmware images and the OTA manifest.
 
-Current verified bootstrap release: build 231 / 0.3.2.
+## Current state
 
-Build 229 requires one final cable update of `K4Y-Puck-231.bin` at `0x10000`
-with erase disabled. Build 231 and later read this public OTA channel automatically.
+- Stable device baseline: build 229.
+- Candidate awaiting physical display/touch validation: build 232 / 0.3.3.
+- Automatic OTA manifest is disabled until that validation is complete.
+- Build 231 is retained only for forensic comparison and must not be installed.
 
-Every published firmware image must pass the repository release gate: exact expected
-size, SHA-256, ESP32 application-image validation, and a byte-for-byte public download check.
+Build 232 uses the existing dual-slot OTA layout and delays image confirmation until
+its boot self-test verifies Czech font glyphs, an LCD flush, LVGL startup and touch.
+A failed first boot remains eligible for ESP-IDF rollback to build 229.
+
+Every release must pass the repository gate: exact expected size, SHA-256, ESP32
+application-image validation, and byte-for-byte public download verification.
 
 This repository contains distributable firmware artifacts only. Application source code,
 credentials and pairing tokens are not published here.
