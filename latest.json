@@ -1,8 +1,7 @@
 {
-  "version": 0,
-  "versionName": "disabled-display-regression",
-  "url": "",
-  "sha256": "",
-  "size": 0,
-  "status": "disabled-font-rendering-regression"
+  "version": 232,
+  "versionName": "0.3.3",
+  "url": "https://raw.githubusercontent.com/peegee1985/k4y-puck/main/K4Y-Puck-232.bin",
+  "sha256": "ac7319121d54ffdbc4ea51020021700826fb82ab52e1a3767fcf820630f771ae",
+  "size": 1390448
 }
