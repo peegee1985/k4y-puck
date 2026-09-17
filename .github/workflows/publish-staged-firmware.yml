@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "release-requests/build-233.txt"
+      - "release-requests/build-234.txt"
 
 permissions:
   contents: write
@@ -17,12 +17,12 @@ jobs:
   verify-and-publish:
     runs-on: ubuntu-latest
     env:
-      VERSION: "233"
-      VERSION_NAME: "0.3.4"
-      STAGED_ARTIFACT: "staging/K4Y-Puck-233.bin.xz"
-      RELEASE_ARTIFACT: "K4Y-Puck-233.bin"
-      EXPECTED_SIZE: "1371392"
-      EXPECTED_SHA256: "43bbc65c55d579564324724aff2455b8b3c1d8890404f1fed28c73a3e011874f"
+      VERSION: "234"
+      VERSION_NAME: "0.4.0"
+      STAGED_ARTIFACT: "staging/K4Y-Puck-234.bin.xz"
+      RELEASE_ARTIFACT: "K4Y-Puck-234.bin"
+      EXPECTED_SIZE: "1460736"
+      EXPECTED_SHA256: "07efd643e77b504636024f6c26c85f5ce8697de509a363f07f0dd3c41d482031"
 
     steps:
       - name: Checkout exact release commit
@@ -53,7 +53,7 @@ jobs:
           import pathlib
           import sys
           image = pathlib.Path(sys.argv[1]).read_bytes()
-          if len(image) != int("1371392"):
+          if len(image) != int("1460736"):
               raise SystemExit("Unexpected firmware size")
           if not image or image[0] != 0xE9:
               raise SystemExit("Invalid ESP application magic")

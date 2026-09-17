@@ -1,0 +1,5 @@
+Publish verified K4Y Puck build 234 / 0.4.0.
+Source commit: cd9e85eefb03ef7fda158cf759df3f5004957503
+Firmware SHA-256: 07efd643e77b504636024f6c26c85f5ce8697de509a363f07f0dd3c41d482031
+Firmware size: 1460736
+CI run: 35244344336
