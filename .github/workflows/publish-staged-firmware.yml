@@ -4,7 +4,8 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "release-requests/build-234.txt"\n      - ".github/workflows/publish-staged-firmware.yml"
+      - "release-requests/build-234.txt"
+      - ".github/workflows/publish-staged-firmware.yml"
 
 permissions:
   contents: write
