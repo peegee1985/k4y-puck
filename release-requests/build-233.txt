@@ -1,0 +1,3 @@
+Publish verified K4Y Puck build 233 / 0.3.4.
+Source commit: ccaa0b46734936034614e82acfb244ec9eb30cb1
+Firmware SHA-256: 43bbc65c55d579564324724aff2455b8b3c1d8890404f1fed28c73a3e011874f
