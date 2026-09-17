@@ -2,6 +2,9 @@ name: Publish verified K4Y Puck firmware
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - "release-requests/build-232.txt"
 
 permissions:
   contents: write
@@ -78,3 +81,26 @@ jobs:
           git diff --cached --check
           git commit -m "release: publish verified K4Y Puck build $VERSION"
           git push
+
+      - name: Verify bytes from immutable public URL
+        shell: bash
+        run: |
+          set -euo pipefail
+          release_commit="$(git rev-parse HEAD)"
+          public_base="https://raw.githubusercontent.com/peegee1985/k4y-puck/$release_commit"
+          downloaded=false
+          for attempt in $(seq 1 12); do
+            if curl --fail --silent --show-error --location               "$public_base/$RELEASE_ARTIFACT" -o /tmp/public-firmware.bin; then
+              downloaded=true
+              break
+            fi
+            sleep 5
+          done
+          test "$downloaded" = true
+          test "$(stat --format=%s /tmp/public-firmware.bin)" = "$EXPECTED_SIZE"
+          test "$(sha256sum /tmp/public-firmware.bin | cut -d ' ' -f 1)" = "$EXPECTED_SHA256"
+          curl --fail --silent --show-error --location             "$public_base/latest.json" -o /tmp/public-latest.json
+          test "$(jq -r .version /tmp/public-latest.json)" = "$VERSION"
+          test "$(jq -r .versionName /tmp/public-latest.json)" = "$VERSION_NAME"
+          test "$(jq -r .sha256 /tmp/public-latest.json)" = "$EXPECTED_SHA256"
+          test "$(jq -r .size /tmp/public-latest.json)" = "$EXPECTED_SIZE"

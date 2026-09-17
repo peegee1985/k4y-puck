@@ -1,0 +1,10 @@
+K4Y Puck controlled release request
+
+Build: 232
+Version: 0.3.3
+Source commit: 1e0052244337f40d84f9e25136ad8b1df2194cb7
+CI run: 35194731566
+Firmware size: 1390448
+Firmware SHA-256: ac7319121d54ffdbc4ea51020021700826fb82ab52e1a3767fcf820630f771ae
+Staged XZ SHA-256: de2daff82f907f96540d768c6dc4f6b39a9979ef2af49f2baf7685e751672d28
+Release condition: publish only through the verification workflow.
