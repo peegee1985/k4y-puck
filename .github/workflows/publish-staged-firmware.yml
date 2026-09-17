@@ -1,0 +1,84 @@
+name: Publish verified K4Y Puck firmware
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/publish-staged-firmware.yml"
+      - "staging/K4Y-Puck-231.bin.xz"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: k4y-puck-firmware-release
+  cancel-in-progress: false
+
+jobs:
+  verify-and-publish:
+    runs-on: ubuntu-latest
+    env:
+      VERSION: "231"
+      VERSION_NAME: "0.3.2"
+      STAGED_ARTIFACT: "staging/K4Y-Puck-231.bin.xz"
+      RELEASE_ARTIFACT: "K4Y-Puck-231.bin"
+      EXPECTED_SIZE: "1377248"
+      EXPECTED_SHA256: "8caf3870ac4934b792decdd6ab65f0fe6b202273d00fbd5ba916ac8d76a6a956"
+
+    steps:
+      - name: Checkout exact release commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct firmware
+        shell: bash
+        run: xz --decompress --stdout "$STAGED_ARTIFACT" > "$RELEASE_ARTIFACT"
+
+      - name: Verify exact size and SHA-256
+        shell: bash
+        run: |
+          set -euo pipefail
+          actual_size="$(stat --format=%s "$RELEASE_ARTIFACT")"
+          actual_sha="$(sha256sum "$RELEASE_ARTIFACT" | cut -d ' ' -f 1)"
+          test "$actual_size" = "$EXPECTED_SIZE"
+          test "$actual_sha" = "$EXPECTED_SHA256"
+
+      - name: Validate ESP32 application image
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet esptool
+          python -m esptool image-info "$RELEASE_ARTIFACT"
+          python - "$RELEASE_ARTIFACT" <<'PY'
+          import pathlib
+          import sys
+          image = pathlib.Path(sys.argv[1]).read_bytes()
+          if len(image) != int("1377248"):
+              raise SystemExit("Unexpected firmware size")
+          if not image or image[0] != 0xE9:
+              raise SystemExit("Invalid ESP application magic")
+          PY
+
+      - name: Generate OTA manifest
+        shell: bash
+        run: |
+          jq -n \
+            --argjson version "$VERSION" \
+            --arg versionName "$VERSION_NAME" \
+            --arg url "https://raw.githubusercontent.com/peegee1985/k4y-puck/main/$RELEASE_ARTIFACT" \
+            --arg sha256 "$EXPECTED_SHA256" \
+            --argjson size "$EXPECTED_SIZE" \
+            '{version:$version,versionName:$versionName,url:$url,sha256:$sha256,size:$size}' \
+            > latest.json
+
+      - name: Publish only verified bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$RELEASE_ARTIFACT" latest.json
+          git diff --cached --check
+          git commit -m "release: publish verified K4Y Puck build $VERSION"
+          git push
