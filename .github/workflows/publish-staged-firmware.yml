@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "release-requests/build-232.txt"
+      - "release-requests/build-233.txt"
 
 permissions:
   contents: write
@@ -17,12 +17,12 @@ jobs:
   verify-and-publish:
     runs-on: ubuntu-latest
     env:
-      VERSION: "232"
-      VERSION_NAME: "0.3.3"
-      STAGED_ARTIFACT: "staging/K4Y-Puck-232.bin.xz"
-      RELEASE_ARTIFACT: "K4Y-Puck-232.bin"
-      EXPECTED_SIZE: "1390448"
-      EXPECTED_SHA256: "ac7319121d54ffdbc4ea51020021700826fb82ab52e1a3767fcf820630f771ae"
+      VERSION: "233"
+      VERSION_NAME: "0.3.4"
+      STAGED_ARTIFACT: "staging/K4Y-Puck-233.bin.xz"
+      RELEASE_ARTIFACT: "K4Y-Puck-233.bin"
+      EXPECTED_SIZE: "1371392"
+      EXPECTED_SHA256: "43bbc65c55d579564324724aff2455b8b3c1d8890404f1fed28c73a3e011874f"
 
     steps:
       - name: Checkout exact release commit
@@ -53,7 +53,7 @@ jobs:
           import pathlib
           import sys
           image = pathlib.Path(sys.argv[1]).read_bytes()
-          if len(image) != int("1390448"):
+          if len(image) != int("1371392"):
               raise SystemExit("Unexpected firmware size")
           if not image or image[0] != 0xE9:
               raise SystemExit("Invalid ESP application magic")
@@ -90,7 +90,8 @@ jobs:
           public_base="https://raw.githubusercontent.com/peegee1985/k4y-puck/$release_commit"
           downloaded=false
           for attempt in $(seq 1 12); do
-            if curl --fail --silent --show-error --location               "$public_base/$RELEASE_ARTIFACT" -o /tmp/public-firmware.bin; then
+            if curl --fail --silent --show-error --location \
+              "$public_base/$RELEASE_ARTIFACT" -o /tmp/public-firmware.bin; then
               downloaded=true
               break
             fi
@@ -99,7 +100,8 @@ jobs:
           test "$downloaded" = true
           test "$(stat --format=%s /tmp/public-firmware.bin)" = "$EXPECTED_SIZE"
           test "$(sha256sum /tmp/public-firmware.bin | cut -d ' ' -f 1)" = "$EXPECTED_SHA256"
-          curl --fail --silent --show-error --location             "$public_base/latest.json" -o /tmp/public-latest.json
+          curl --fail --silent --show-error --location \
+            "$public_base/latest.json" -o /tmp/public-latest.json
           test "$(jq -r .version /tmp/public-latest.json)" = "$VERSION"
           test "$(jq -r .versionName /tmp/public-latest.json)" = "$VERSION_NAME"
           test "$(jq -r .sha256 /tmp/public-latest.json)" = "$EXPECTED_SHA256"
