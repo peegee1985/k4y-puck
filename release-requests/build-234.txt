@@ -3,3 +3,4 @@ Source commit: cd9e85eefb03ef7fda158cf759df3f5004957503
 Firmware SHA-256: 07efd643e77b504636024f6c26c85f5ce8697de509a363f07f0dd3c41d482031
 Firmware size: 1460736
 CI run: 35244344336
+Staging transport: two exact XZ parts; reconstructed archive SHA-256 59d92ead1fdec4fb47e262f197c30c51fc0b0d7a48bf417e79241fd584661568
