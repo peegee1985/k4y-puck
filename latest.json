@@ -1,7 +1,8 @@
 {
-  "version": 231,
-  "versionName": "0.3.2",
+  "version": 0,
+  "versionName": "disabled",
   "url": "https://raw.githubusercontent.com/peegee1985/k4y-puck/main/K4Y-Puck-231.bin",
-  "sha256": "7d2b50a563ca57304c44aa45f6412267f4639f648d1cd83f08922557be6ffd26",
-  "size": 786444
+  "sha256": "",
+  "size": 0,
+  "status": "disabled-incomplete-artifact"
 }
