@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "release-requests/build-235.txt"
+      - "release-requests/build-236.txt"
       - ".github/workflows/publish-staged-firmware.yml"
 
 permissions:
@@ -18,12 +18,12 @@ jobs:
   verify-and-publish:
     runs-on: ubuntu-latest
     env:
-      VERSION: "235"
-      VERSION_NAME: "0.4.1"
-      STAGED_PREFIX: "staging/K4Y-Puck-235.bin.xz.part-"
-      RELEASE_ARTIFACT: "K4Y-Puck-235.bin"
-      EXPECTED_SIZE: "1461120"
-      EXPECTED_SHA256: "aea55e75b510d12b3f573d14479f7a3973df06998587c5aaddd027a99085f5be"
+      VERSION: "236"
+      VERSION_NAME: "0.4.2"
+      STAGED_PREFIX: "staging/K4Y-Puck-236.bin.xz.part-"
+      RELEASE_ARTIFACT: "K4Y-Puck-236.bin"
+      EXPECTED_SIZE: "1461840"
+      EXPECTED_SHA256: "a57b76be29cdcbc5c6b101c36e8570a139f382541f60e1dda08d2cb076cbe73e"
 
     steps:
       - name: Checkout exact release commit
@@ -35,9 +35,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat "${STAGED_PREFIX}"* > /tmp/K4Y-Puck-235.bin.xz
-          xz --test /tmp/K4Y-Puck-235.bin.xz
-          xz --decompress --stdout /tmp/K4Y-Puck-235.bin.xz > "$RELEASE_ARTIFACT"
+          cat "${STAGED_PREFIX}"* > /tmp/K4Y-Puck-236.bin.xz
+          xz --test /tmp/K4Y-Puck-236.bin.xz
+          xz --decompress --stdout /tmp/K4Y-Puck-236.bin.xz > "$RELEASE_ARTIFACT"
 
       - name: Verify exact size and SHA-256
         shell: bash
@@ -58,7 +58,7 @@ jobs:
           import pathlib
           import sys
           image = pathlib.Path(sys.argv[1]).read_bytes()
-          if len(image) != int("1461120"):
+          if len(image) != int("1461840"):
               raise SystemExit("Unexpected firmware size")
           if not image or image[0] != 0xE9:
               raise SystemExit("Invalid ESP application magic")
