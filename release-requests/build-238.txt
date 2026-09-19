@@ -7,3 +7,5 @@ Firmware SHA-256: a8a20ff48f96ce7ac68eab36a707de6660da1e15e436fb029a58f6b99cb912
 
 Release notes: releases/238.md
 Changelog: CHANGELOG.md
+
+Status: publish requested
