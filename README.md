@@ -4,7 +4,7 @@ Public release channel for verified K4Y Puck firmware images and the OTA manifes
 
 ## Current state
 
-- Release target: build 242 / 0.4.8.
+- Release target: build 243 / 0.4.9.\n- Build 243 reduces a normal dashboard refresh from three TLS sessions to one after the\n  matching backend is deployed, enables `-O2`, sends bounded fleet telemetry, benchmarks\n  FAT32 SD storage non-destructively and reduces OTA TLS memory with 4 KiB requests.
 - Build 242 verifies the exact OTA image SHA-256 on the Puck, repeats update checks
   every six hours, exposes runtime RAM health and safely probes 256GB-class SDXC
   cards in native one-bit mode without ever formatting them automatically.
@@ -19,7 +19,7 @@ Public release channel for verified K4Y Puck firmware images and the OTA manifes
 - Build 237 remains the verified OTA-capable rollback fallback.
 - Build 231 is retained only for forensic comparison and must not be installed.
 
-Build 242 uses the existing dual-slot OTA layout and retains the boot self-test for
+Build 243 uses the existing dual-slot OTA layout and retains the boot self-test for
 Czech font glyphs, an LCD flush and LVGL startup. Touch remains visible in diagnostics
 but no longer rejects a usable image when it is only transiently unavailable. The SD
 probe runs while a new image is still pending verification; a fatal driver regression

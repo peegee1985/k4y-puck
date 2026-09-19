@@ -1,0 +1,12 @@
+K4Y Puck 0.4.9 (build 243)
+
+Source commit: c7a827c75fe8c72ecaae71a8a7095c9b8fa28dca
+Audit commit: 0b1c13030c194ccb6c3bd379a2894a518b6a484e
+CI workflow run: 35457628780
+Firmware size: 1695280
+Firmware SHA-256: f49612688b029a6b5b6cc0d4e7e1c7d399842e3aa0c04e30e4708027532e7409
+
+Release notes: releases/243.md
+Changelog: CHANGELOG.md
+
+Status: publish requested

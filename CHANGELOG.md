@@ -1,5 +1,18 @@
 # K4Y Puck – changelog
 
+## 0.4.9 (build 243) — 19. 9. 2026
+
+- Běžný dashboard refresh používá po nasazení odpovídajícího backendu jeden agregovaný HTTPS požadavek místo tří samostatných TLS spojení.
+- Firmware zachovává úzký fallback na staré endpointy pouze při HTTP 404/405, takže OTA lze bezpečně instalovat před backendem.
+- Produkční obraz je kompilován s optimalizací `-O2`; při přechodu byla opravena a regresně otestována omezená kopie UI textů.
+- OTA partial download používá 4 KiB HTTP požadavky, což snižuje přechodnou spotřebu interní RAM.
+- Synchronizace odesílá verzi, uptime, Wi-Fi RSSI, heap/PSRAM, důvod restartu, rezervy stacků a stav SD do webové správy Pucků.
+- Stavová obrazovka zobrazuje aktuální RAM, největší blok, historické minimum, PSRAM a rychlost SD.
+- SD karta má oddělené adresáře `/K4Y/cache`, `maps`, `logs`, `offline` a `system`.
+- Neinvazivní 512 KiB benchmark používá dočasný unikátní soubor, kontroluje přečtený vzor a soubor po měření odstraní.
+- Velký benchmarkovací buffer je v PSRAM; SD karta se nepoužívá jako RAM.
+- Zachovány OTA SHA-256 kontrola, rollback, dotyk, otáčení, Wi-Fi profily, párování a uživatelská data.
+
 ## 0.4.8 (build 242) — 19. 9. 2026
 
 - OTA manifest nově vyžaduje platný 64znakový SHA-256 a přesnou velikost obrazu.
