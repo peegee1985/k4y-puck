@@ -1,0 +1,9 @@
+K4Y Puck 0.4.4 (build 238)
+
+Source commit: 35f400f192a9ee26b74674fedccec6f1e1eba264
+CI workflow run: 35439701116
+Firmware size: 1647520
+Firmware SHA-256: a8a20ff48f96ce7ac68eab36a707de6660da1e15e436fb029a58f6b99cb91201
+
+Release notes: releases/238.md
+Changelog: CHANGELOG.md
