@@ -1,5 +1,16 @@
 # K4Y Puck – changelog
 
+## 0.4.10 (build 244) — 19. 9. 2026
+
+- Nová zpráva nebo announcement z dispečinku okamžitě probudí displej a otevře obrazovku zprávy.
+- Dokud řidič zprávu nepotvrdí tlačítkem `PŘEČTENO`, firmware nepovolí přechod do spořiče obrazovky.
+- Pokud se potvrzení nepodaří odeslat, zpráva zůstane aktivní a displej se neuspí; nedojde tedy k tichému ztracení upozornění.
+- Po úspěšném potvrzení se běžný časovač spořiče rozběhne znovu od okamžiku akce řidiče.
+- Diagnostika SD karty zobrazuje rychlost čtení a zápisu na desetiny MiB/s, takže hodnoty pod 1 MiB/s už nejsou chybně zobrazeny jako `R0 W0`.
+- Verze na stavové obrazovce se skládá přímo z verze sestavení a není už zadaná natvrdo.
+- Nové chování displeje i formátování SD rychlosti mají samostatné regresní testy.
+- Zachovány optimalizace `-O2`, PSRAM, OTA SHA-256 kontrola, rollback, dotyk, otáčení, Wi-Fi profily a uživatelská data.
+
 ## 0.4.9 (build 243) — 19. 9. 2026
 
 - Běžný dashboard refresh používá po nasazení odpovídajícího backendu jeden agregovaný HTTPS požadavek místo tří samostatných TLS spojení.

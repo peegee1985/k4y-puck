@@ -1,0 +1,12 @@
+K4Y Puck OTA release request
+
+Build: 244
+Version: 0.4.10
+Source commit: 21bb42efbc603b0c76c08119d68b37e45a35a653
+CI run: 35458771037
+Expected size: 1695808
+Expected SHA-256: 0e398844f69957e43c5fc678a799a85d2bc7de5e44c83c9f9581a45b7c5ac9dd
+
+Publish only after the workflow reconstructs the staged XZ chunks, validates the ESP32
+application image, verifies the exact size and SHA-256, and confirms the immutable
+public download byte-for-byte.
