@@ -4,7 +4,9 @@ Public release channel for verified K4Y Puck firmware images and the OTA manifes
 
 ## Current state
 
-- Release target: build 240 / 0.4.6.
+- Release target: build 241 / 0.4.7.
+- Build 241 rebuilds automatic rotation and tap/scroll arbitration, removes the
+  LVGL busy-spin, shows real OTA percentages and lowers screensaver brightness to 30%.
 - Build 240 adds five validated saved Wi-Fi profiles with automatic failover, migrates
   the existing build 239 connection without clearing NVS, and hardens tap/swipe handling.
 - Build 239 stabilizes online/offline presence, background sync and OTA confirmation.
@@ -14,7 +16,7 @@ Public release channel for verified K4Y Puck firmware images and the OTA manifes
 - Build 237 remains the verified OTA-capable rollback fallback.
 - Build 231 is retained only for forensic comparison and must not be installed.
 
-Build 240 uses the existing dual-slot OTA layout and retains the boot self-test for
+Build 241 uses the existing dual-slot OTA layout and retains the boot self-test for
 Czech font glyphs, an LCD flush and LVGL startup. Touch remains visible in diagnostics
 but no longer rejects a usable image when it is only transiently unavailable. A failed first boot remains
 eligible for ESP-IDF rollback to the previously running image.

@@ -1,0 +1,11 @@
+K4Y Puck 0.4.7 (build 241)
+
+Source commit: 48c30235fa5808e775ab9d996ac712e46b985fca
+CI workflow run: 35452492957
+Firmware size: 1652720
+Firmware SHA-256: dd99b35759ba11947cdf490396de9381cfcf8f78746b96919c6cfb0f05fe4ac2
+
+Release notes: releases/241.md
+Changelog: CHANGELOG.md
+
+Status: publish requested

@@ -1,5 +1,19 @@
 # K4Y Puck – changelog
 
+## 0.4.7 (build 241) — 19. 9. 2026
+
+- Automatická rotace má nový stavový automat: správné mapování os QMI8658, známou výchozí polohu a jedinou změnu orientace na jeden fyzický pohyb.
+- Přechod mezi akcelerometrem a gyroskopem je uzamčený až do souvislého klidu, takže stejný pohyb už nemůže obraz otočit dvakrát.
+- Dotyk rozlišuje skutečný tap od pohybu prstu a scrollu; akce se provede až po uvolnění bez překročení pohybového limitu.
+- Prázdný interval eventového SPD2010 se už nepovažuje za puštění prstu a ztracený release se bezpečně ukončí časovým limitem.
+- Opakované překreslování už nehromadí callbacky obrazovky a jeden swipe proto nemůže spustit navigaci vícekrát.
+- LVGL smyčka vždy uvolní alespoň jeden FreeRTOS tick; odstraněn busy-spin, který zpomaloval dotyk, síť i animace.
+- Zápis nastavení do NVS probíhá mimo UI smyčku, takže přepínání voleb nezadrhává obraz.
+- OTA aktualizace zobrazuje samostatnou obrazovku, skutečný průběh 0–100 %, fázi ověření a restartu.
+- Čekající síťové akce a připojování používají plynulý průběhový indikátor.
+- Ve spořiči se podsvícení sníží na 30 % a po probuzení se vrátí na 70 %.
+- Zachovány uložené Wi-Fi profily, párování, nastavení, rollback a stávající partition table.
+
 ## 0.4.6 (build 240) — 19. 9. 2026
 
 - Puck si nyní bezpečně pamatuje až pět ověřených Wi‑Fi sítí v odděleném NVS profilu.
