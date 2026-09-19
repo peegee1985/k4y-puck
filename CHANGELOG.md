@@ -1,5 +1,14 @@
 # K4Y Puck – changelog
 
+## 0.4.12 (build 246) — 19. 9. 2026
+
+- Dlouhé hlášky v pravém horním rohu už nemohou přetéct do názvu řidiče ani stavu zakázky; text nahradil pevný 16px stavový bod.
+- Zelený bod znamená online, oranžový synchronizaci nebo přechodnou chybu a červený potvrzený výpadek připojení.
+- Stavové texty čekající akce, připojování a OTA mají pevnou jednořádkovou výšku s výpustkou, takže se nepřekrývají s dalšími prvky.
+- Běžná 20sekundová synchronizace už při nezměněných datech nezničí a znovu nevytvoří celý dashboard; tím se snižuje práce LVGL a rušivé překreslování.
+- Překreslení zůstává vynucené po akci řidiče a při změně zakázky, zprávy nebo dat dashboardu.
+- Zachovány párování, dotyk, orientace, Wi-Fi profily, NVS nastavení, zprávy blokující spořič, OTA SHA-256 a rollback.
+
 ## 0.4.11 (build 245) — 19. 9. 2026
 
 - Správa Pucků rozlišuje fyzické Pucky od historických tokenů chytrých hodinek podle identity zařízení a telemetrie.

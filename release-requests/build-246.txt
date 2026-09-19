@@ -1,0 +1,11 @@
+K4Y Puck OTA release request
+
+Build: 246
+Version: 0.4.12
+Source commit: b93e334508757825ef67532ba7b29e8c9935ef60
+CI run: 35463120460
+Expected size: 1697600
+Expected SHA-256: 2216c101721bd5ebb166b88f6f55be5f637166cdd3e3959f8be9886a09ccf837
+
+Publish only after reconstruction, ESP32 image validation, exact size/SHA-256
+verification and immutable public byte verification.
