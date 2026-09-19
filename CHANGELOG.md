@@ -1,5 +1,17 @@
 # K4Y Puck – changelog
 
+## 0.4.8 (build 242) — 19. 9. 2026
+
+- OTA manifest nově vyžaduje platný 64znakový SHA-256 a přesnou velikost obrazu.
+- Puck po stažení znovu spočítá SHA-256 přímo z neaktivní OTA partition; nesoulad ukončí aktualizaci dříve, než se obraz označí jako bootovatelný.
+- Po zjištění aktuální verze se OTA kontrola opakuje každých šest hodin, takže budoucí staged rollout nevyžaduje ruční restart.
+- Přidána runtime diagnostika: aktuální a minimální volná interní RAM, největší blok, PSRAM, uptime a důvod restartu.
+- Obrazovka `STAV ZAŘÍZENÍ` zobrazuje stav SD karty a volnou/minimální interní RAM.
+- microSD se inicializuje na nativní jedné datové lince podle zapojení Waveshare (GPIO14/17/16, EXIO3).
+- Firmware pouze připojí existující FAT32; nikdy kartu automaticky neformátuje. exFAT nebo neplatný filesystem zobrazí jako `SD VYŽADUJE FAT32`.
+- SD probe proběhne ještě před potvrzením nového OTA obrazu, aby fatální regrese ovladače zůstala krytá rollbackem.
+- Zachovány funkční otáčení, dotyk, Wi-Fi profily, párování, zvuk, progress bar a NVS data.
+
 ## 0.4.7 (build 241) — 19. 9. 2026
 
 - Automatická rotace má nový stavový automat: správné mapování os QMI8658, známou výchozí polohu a jedinou změnu orientace na jeden fyzický pohyb.
