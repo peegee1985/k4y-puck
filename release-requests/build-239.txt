@@ -1,0 +1,11 @@
+K4Y Puck 0.4.5 (build 239)
+
+Source commit: 461976cc67a0eb8974ae1587cc191e5db596b8f9
+CI workflow run: 35442188255
+Firmware size: 1647792
+Firmware SHA-256: f5b092a3fbb76659620c1d8ee710cf6bc868ebd084913d918986ae4a46cf7838
+
+Release notes: releases/239.md
+Changelog: CHANGELOG.md
+
+Status: publish requested
