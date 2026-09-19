@@ -1,5 +1,18 @@
 # K4Y Puck – changelog
 
+## 0.4.6 (build 240) — 19. 9. 2026
+
+- Puck si nyní bezpečně pamatuje až pět ověřených Wi‑Fi sítí v odděleném NVS profilu.
+- Existující Wi‑Fi z buildu 239 se při prvním startu automaticky migruje, bez ztráty připojení nebo párovacího tokenu.
+- Po ztrátě sítě Puck nejdříve zkusí naposledy úspěšný profil a potom automaticky prochází ostatní známé sítě.
+- Nová síť se uloží až po skutečném získání IP adresy; chybné heslo tedy nepřepíše funkční profil.
+- Telefonní nastavení Wi‑Fi už nemaže dříve uložené sítě a automaticky se nabídne, pokud není dosažitelná žádná známá síť.
+- Tlačítka se aktivují až dokončeným klepnutím, takže swipe v nastavení už nespouští položku pod prstem.
+- Přechod mezi obrazovkami čeká na uvolnění dotyku a blokuje opakovaný tap, který dříve propadl do nově otevřeného menu.
+- SPD2010 touch polling nyní filtruje jeden prázdný vzorek během pohybu a běží po 10 ms; LVGL plánování bylo zrychleno.
+- Automatická rotace má citlivější, ale stabilizovaný práh akcelerometru i gyroskopu; manuální režimy 0° a 90° zůstávají zachované.
+- Zachovány OTA rollback, přesné logo, přímé zprávy a announcements, zvuk, nastavení a všechna NVS data.
+
 ## 0.4.5 (build 239) — 19. 9. 2026
 
 - Běžná synchronizace po 20 sekundách už nevkládá do pracovní obrazovky stav `SYNC...`.

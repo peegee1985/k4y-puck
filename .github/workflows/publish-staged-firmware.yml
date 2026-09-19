@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "release-requests/build-239.txt"
+      - "release-requests/build-240.txt"
       - ".github/workflows/publish-staged-firmware.yml"
 
 permissions:
@@ -18,16 +18,12 @@ jobs:
   verify-and-publish:
     runs-on: ubuntu-latest
     env:
-      VERSION: "239"
-      VERSION_NAME: "0.4.5"
-      STAGED_PREFIX: "staging/K4Y-Puck-239.bin.xz.part-"
-      RELEASE_ARTIFACT: "K4Y-Puck-239.bin"
-      EXPECTED_SIZE: "1647792"
-      EXPECTED_SHA256: "f5b092a3fbb76659620c1d8ee710cf6bc868ebd084913d918986ae4a46cf7838"
-      RESTORED_ARTIFACT: "K4Y-Puck-238.bin"
-      RESTORED_PREFIX: "staging/K4Y-Puck-238.bin.xz.part-"
-      RESTORED_SIZE: "1647520"
-      RESTORED_SHA256: "a8a20ff48f96ce7ac68eab36a707de6660da1e15e436fb029a58f6b99cb91201"
+      VERSION: "240"
+      VERSION_NAME: "0.4.6"
+      STAGED_PREFIX: "staging/K4Y-Puck-240.bin.xz.part-"
+      RELEASE_ARTIFACT: "K4Y-Puck-240.bin"
+      EXPECTED_SIZE: "1650400"
+      EXPECTED_SHA256: "f1a3f760f9f0049153d4ce35204ea13f9ec320147492c483db97bf60ad3c70cd"
 
     steps:
       - name: Checkout exact release commit
@@ -39,15 +35,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat "${STAGED_PREFIX}"* > /tmp/K4Y-Puck-239.bin.xz
-          xz --test /tmp/K4Y-Puck-239.bin.xz
-          xz --decompress --stdout /tmp/K4Y-Puck-239.bin.xz > "$RELEASE_ARTIFACT"
-
-          # Build 238 was previously correct, but a later direct binary write
-          # truncated the public file. Restore it from its immutable staged bytes.
-          cat "${RESTORED_PREFIX}"* > /tmp/K4Y-Puck-238.bin.xz
-          xz --test /tmp/K4Y-Puck-238.bin.xz
-          xz --decompress --stdout /tmp/K4Y-Puck-238.bin.xz > "$RESTORED_ARTIFACT"
+          cat "${STAGED_PREFIX}"* > /tmp/K4Y-Puck-240.bin.xz
+          xz --test /tmp/K4Y-Puck-240.bin.xz
+          xz --decompress --stdout /tmp/K4Y-Puck-240.bin.xz > "$RELEASE_ARTIFACT"
 
       - name: Verify exact size and SHA-256
         shell: bash
@@ -57,8 +47,6 @@ jobs:
           actual_sha="$(sha256sum "$RELEASE_ARTIFACT" | cut -d ' ' -f 1)"
           test "$actual_size" = "$EXPECTED_SIZE"
           test "$actual_sha" = "$EXPECTED_SHA256"
-          test "$(stat --format=%s "$RESTORED_ARTIFACT")" = "$RESTORED_SIZE"
-          test "$(sha256sum "$RESTORED_ARTIFACT" | cut -d ' ' -f 1)" = "$RESTORED_SHA256"
 
       - name: Validate ESP32 application image
         shell: bash
@@ -70,7 +58,7 @@ jobs:
           import pathlib
           import sys
           image = pathlib.Path(sys.argv[1]).read_bytes()
-          if len(image) != int("1647792"):
+          if len(image) != int("1650400"):
               raise SystemExit("Unexpected firmware size")
           if not image or image[0] != 0xE9:
               raise SystemExit("Invalid ESP application magic")
@@ -94,7 +82,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$RELEASE_ARTIFACT" "$RESTORED_ARTIFACT" latest.json
+          git add "$RELEASE_ARTIFACT" latest.json
           git diff --cached --check
           git commit -m "release: publish verified K4Y Puck build $VERSION"
           git push
@@ -117,10 +105,6 @@ jobs:
           test "$downloaded" = true
           test "$(stat --format=%s /tmp/public-firmware.bin)" = "$EXPECTED_SIZE"
           test "$(sha256sum /tmp/public-firmware.bin | cut -d ' ' -f 1)" = "$EXPECTED_SHA256"
-          curl --fail --silent --show-error --location \
-            "$public_base/$RESTORED_ARTIFACT" -o /tmp/public-restored.bin
-          test "$(stat --format=%s /tmp/public-restored.bin)" = "$RESTORED_SIZE"
-          test "$(sha256sum /tmp/public-restored.bin | cut -d ' ' -f 1)" = "$RESTORED_SHA256"
           curl --fail --silent --show-error --location \
             "$public_base/latest.json" -o /tmp/public-latest.json
           test "$(jq -r .version /tmp/public-latest.json)" = "$VERSION"
