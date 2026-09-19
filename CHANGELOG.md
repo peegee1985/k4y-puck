@@ -1,5 +1,16 @@
 # K4Y Puck – changelog
 
+## 0.4.11 (build 245) — 19. 9. 2026
+
+- Správa Pucků rozlišuje fyzické Pucky od historických tokenů chytrých hodinek podle identity zařízení a telemetrie.
+- Opakované párování stejného fyzického Pucku se v přehledu sloučí podle stabilního hardwarového `deviceId`.
+- Dispečer může bezpečně zařadit jednorázový vzdálený restart nebo okamžitou kontrolu OTA.
+- Webová správa umožňuje na dálku nastavit velikost textu, orientaci, zvuk, hlasitost, běžný jas a čas spořiče.
+- Puck přebírá příkazy při pravidelné synchronizaci; příkaz restartu je vydán pouze jednou, takže nemůže vytvořit restartovací smyčku.
+- Nastavení se ukládá do NVS a přežije restart. Staré nastavení verze 1 se beze ztráty migruje s výchozím jasem 70 %.
+- Telemetrie doplňuje hlasitost a jas; backend zůstává kompatibilní s buildem 244 během pořadí nasazení.
+- Zachovány zprávy probouzející displej, blokace spořiče do potvrzení, OTA SHA-256, rollback, `-O2`, PSRAM a SD diagnostika.
+
 ## 0.4.10 (build 244) — 19. 9. 2026
 
 - Nová zpráva nebo announcement z dispečinku okamžitě probudí displej a otevře obrazovku zprávy.

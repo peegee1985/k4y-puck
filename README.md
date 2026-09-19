@@ -4,7 +4,10 @@ Public release channel for verified K4Y Puck firmware images and the OTA manifes
 
 ## Current state
 
-- Release target: build 244 / 0.4.10.
+- Release target: build 245 / 0.4.11.
+- Build 245 adds safe one-shot remote restart, forced OTA checks and remote display,
+  sound, orientation, text-size and screensaver settings from the web dispatcher.
+  Smartwatch pairings are no longer misreported as offline Pucks.
 - Build 244 wakes the display for dispatcher messages and announcements and keeps
   the message visible with the screensaver disabled until the driver confirms it.
   SD benchmark speeds are shown with decimal precision instead of truncating below 1 MiB/s.
@@ -25,7 +28,7 @@ Public release channel for verified K4Y Puck firmware images and the OTA manifes
 - Build 237 remains the verified OTA-capable rollback fallback.
 - Build 231 is retained only for forensic comparison and must not be installed.
 
-Build 244 uses the existing dual-slot OTA layout and retains the boot self-test for
+Build 245 uses the existing dual-slot OTA layout and retains the boot self-test for
 Czech font glyphs, an LCD flush and LVGL startup. Touch remains visible in diagnostics
 but no longer rejects a usable image when it is only transiently unavailable. The SD
 probe runs while a new image is still pending verification; a fatal driver regression
