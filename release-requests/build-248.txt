@@ -1,0 +1,10 @@
+Build: 248
+Version: 0.4.14
+Source commit: 14b676bf3c476b49e1d3a55d084a3f90405b9140
+CI run: 39768848337
+Expected size: 1732768
+Expected SHA-256: beca9de91bdf6d37b39b53b05ebcd1be2be23bcc15b54b9499cce7cdf045210a
+
+Publish only after reconstruction, ESP32 image validation, exact size/SHA-256,
+application descriptor/version check and public immutable byte verification.
+Physically accepted baseline is new-device build 247; build 248 acceptance is pending.

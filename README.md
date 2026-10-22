@@ -4,7 +4,13 @@ Public release channel for verified K4Y Puck firmware images and the OTA manifes
 
 ## Current state
 
-- Release target: build 246 / 0.4.12.
+- Release target: build 248 / 0.4.14.
+- Build 248 adds battery level and a conservative charging-trend bolt below Settings
+  and beside the centred screensaver clock. Percentage is voltage-derived; charging
+  is estimated because the board's ETA6098 STAT signal only drives its physical LED.
+  Invalid/stale readings become unknown rather than a fabricated full battery.
+- Build 247 supplies the physically accepted new-device battery power path used
+  as the base for build 248. OTA keeps pairing, Wi-Fi and settings.
 - Build 246 replaces unbounded header notices with a compact green/amber/red status dot,
   bounds OTA and pending-action labels, and skips full LVGL dashboard reconstruction when
   a periodic synchronization returns unchanged data.
@@ -31,7 +37,7 @@ Public release channel for verified K4Y Puck firmware images and the OTA manifes
 - Build 237 remains the verified OTA-capable rollback fallback.
 - Build 231 is retained only for forensic comparison and must not be installed.
 
-Build 246 uses the existing dual-slot OTA layout and retains the boot self-test for
+Build 248 uses the existing dual-slot OTA layout and retains the boot self-test for
 Czech font glyphs, an LCD flush and LVGL startup. Touch remains visible in diagnostics
 but no longer rejects a usable image when it is only transiently unavailable. The SD
 probe runs while a new image is still pending verification; a fatal driver regression
