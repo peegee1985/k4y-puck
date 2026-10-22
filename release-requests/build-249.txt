@@ -1,0 +1,9 @@
+Build: 249
+Version: 0.4.15
+Source commit: fc1742ff45df382dacffeccb575c0fe216f40cf3
+CI run: 39850528352
+Expected size: 1733136
+Expected SHA-256: 36ad710efa5472adb9231a588acf11ca24a953448725e156a61cf52cae666d6e
+
+Reconstruct and verify exact size/SHA-256, ESP32 image and app descriptor before
+updating the OTA manifest. Verify immutable public bytes after publication.

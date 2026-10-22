@@ -4,7 +4,9 @@ Public release channel for verified K4Y Puck firmware images and the OTA manifes
 
 ## Current state
 
-- Release target: build 248 / 0.4.14.
+- Release target: build 249 / 0.4.15.
+- Build 249 places screensaver battery percentage close to the icon with 6px gaps,
+  removes the empty hidden-bolt slot and automatically centres time plus battery.
 - Build 248 adds battery level and a conservative charging-trend bolt below Settings
   and beside the centred screensaver clock. Percentage is voltage-derived; charging
   is estimated because the board's ETA6098 STAT signal only drives its physical LED.
@@ -37,7 +39,7 @@ Public release channel for verified K4Y Puck firmware images and the OTA manifes
 - Build 237 remains the verified OTA-capable rollback fallback.
 - Build 231 is retained only for forensic comparison and must not be installed.
 
-Build 248 uses the existing dual-slot OTA layout and retains the boot self-test for
+Build 249 uses the existing dual-slot OTA layout and retains the boot self-test for
 Czech font glyphs, an LCD flush and LVGL startup. Touch remains visible in diagnostics
 but no longer rejects a usable image when it is only transiently unavailable. The SD
 probe runs while a new image is still pending verification; a fatal driver regression
