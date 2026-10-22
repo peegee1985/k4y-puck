@@ -1,5 +1,37 @@
 # K4Y Puck – changelog
 
+## 0.4.18 (build 252) — 22. 10. 2026
+
+- Odhlášení řidiče v telefonu uzamkne zakázky a zprávy na Pucku, potlačí jejich upozornění a zobrazí výzvu k přihlášení v telefonu. Přihlášení obnoví přístup bez nového párování.
+- Server pro rozpoznané Pucky filtruje čtení zakázek/zpráv a v transakci odmítá přijetí, odmítnutí, změnu stavu i potvrzení zprávy při odhlášení. Akce vracejí HTTP 409; párovací token zůstává platný. Samostatné hodinky zachovávají původní chování. Údržba zařízení a OTA mohou pokračovat.
+- Spořič ukazuje zelené ONLINE / červené OFFLINE podle přihlášení řidiče. Při neověřeném spojení zobrazuje STAV NEZNÁMÝ. Displej aktualizuje stav při synchronizaci, obvykle do 20 s; server kontroluje každou akci. Ztráta Wi-Fi zneplatní údaj do 1 s.
+- SD ukládá poslední zakázku nebo nabídku do `/K4Y/offline/last-job.cache`. Offline kopie má čas uložení a slouží jen k prohlížení. Neobnovuje zprávy, vzdálené příkazy ani akce ve frontě. Zjištěné odhlášení připraví ověřenou prázdnou kopii. Při známém čase se kopie starší než 24 h neobnovuje.
+- Kopie používá HMAC-SHA256 s klíčem odvozeným v RAM z párování a zařízení; token se na SD neukládá. Soubor není šifrovaný. Obnova podporuje záložní soubor po přerušeném zápisu; nedokončené dočasné soubory ignoruje.
+- Diagnostika: `/K4Y/logs/events.jsonl`, `events.1.jsonl`, `events.2.jsonl`, každý nejvýše 512 KiB. Číselné události startu, synchronizace, baterie, rotace, OTA, akcí, paměti a Wi-Fi. Deník neobsahuje hesla, tokeny, SSID, adresy zákazníků ani texty zpráv.
+- Zápisy běží mimo LVGL, mají omezenou frontu a při chybě prodlevu. Chyba zápisu se ukáže ve stavu zařízení. Karta se nikdy automaticky neformátuje; zůstává FAT32. Po vložení karty za běhu je potřeba restart.
+- Pět Wi-Fi profilů zůstává v NVS: přibližně 500 B plus režie. Přesun na SD by neušetřil provozní RAM a omezil start bez karty.
+- Rotace z 251 a samostatný jas spořiče zůstávají zachované. Vlastník u 251 potvrdil zlepšení rotace.
+- Novou volnou zakázku oznamuje stávající dvojtón přes reproduktor podle nastavené hlasitosti, nyní jen při přihlášení v telefonu. Mluvená hláška zatím není součástí firmware.
+- Kompas nepřidán: QMI8658 nemá magnetometr pro určení severu.
+
+### Ověření
+
+Přenosné testy SD kopie, MAC rozhraní, poškození, cizího párování, přerušeného zápisu, prázdného snímku a rotace deníku prošly v MSVC /W4 /WX i GCC CI. Skutečný LVGL 8.3.11 renderer ověřil tři stavy spořiče, obě uzamčené obrazovky a tři velikosti offline textu. Dva serverové testy pokrývají i skutečné REST požadavky při odhlášení a obnovení přístupu po přihlášení.
+
+- [Zdrojové CI](https://github.com/peegee1985/macaly-kuryr4-you-dispecink-qxs5v8/actions/runs/39867225339): všechny tři joby prošly včetně ESP-IDF 5.5.2 pro ESP32-S3.
+- [Firmware PR #209](https://github.com/peegee1985/macaly-kuryr4-you-dispecink-qxs5v8/pull/209); [server PR #208](https://github.com/peegee1985/macaly-kuryr4-you-dispecink-qxs5v8/pull/208).
+- [Produkční nasazení serveru](https://github.com/peegee1985/macaly-kuryr4-you-dispecink-qxs5v8/actions/runs/39867940876).
+- Přenosové CI znovu stáhlo artefakt a ověřilo ZIP digest GitHubu, shodu APP s obrazem pro 0x10000, ESP descriptor a SHA256SUMS. Přenesené komprimované části mají shodné Git blob hashe.
+- Fyzické chování 252 po OTA (SD odpojení/restart a přihlášení v telefonu) čeká na potvrzení na zařízení.
+
+### Ověřený obraz
+
+- APP: 1745120 B
+- SHA-256: `745e5361ae4b0838b297ce61f2f7e5ec04f64bbb3c213bfa74207b7960860421`
+- Zdroj: `63ea3ab3b2dff86c381620ad0205adfdf8c90682`
+- CI ZIP SHA-256: `73f36ef906d56f699c52e4d289ffcc1d671fb9ad5bf6c59efa891f8031fc8de9`
+- ESP APP descriptor: 0.4.18 / k4y_puck.
+
 ## 0.4.17 (build 251) — 22. 10. 2026
 
 - Oprava regrese automatické rotace z buildu 250. Vlastník na skutečném Pucku potvrdil, že fyzické otočení o +90° i -90° ponechá text vzhůru nohama.

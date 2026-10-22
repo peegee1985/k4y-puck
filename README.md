@@ -4,9 +4,14 @@ Public release channel for verified K4Y Puck firmware images and the OTA manifes
 
 ## Current state
 
-- Release target: build 251 / 0.4.17.
+- Release target: build 252 / 0.4.18.
+- Build 252 follows the driver's phone login: logout locks work/messages and
+  job actions; login restores access without pairing. Server checks apply to every action.
+  Screensaver ONLINE/OFFLINE is driver login; unverified connectivity shows STAV NEZNÁMÝ.
+- SD now stores an authenticated read-only job copy and a bounded diagnostic journal.
+  Wi-Fi profiles stay in NVS (about 500 bytes for five) so startup works without SD.
 - Build 251 reverses incorrect 90/270 automatic rotation compensation from build 250.
-  Field testing rejected 250's rotation; 251 still awaits device confirmation.
+  Field testing rejected 250's rotation; the owner reports improved rotation after 251.
 - Build 250 fixes OTA text overlap and adds
   independent 10–100% screensaver brightness under the Puck's Settings menu.
   Battery percentage mapping/display were audited; capacity remains voltage-estimated.
@@ -44,7 +49,7 @@ Public release channel for verified K4Y Puck firmware images and the OTA manifes
 - Build 237 remains the verified OTA-capable rollback fallback.
 - Build 231 is retained only for forensic comparison and must not be installed.
 
-Build 251 uses the existing dual-slot OTA layout and retains the boot self-test for
+Build 252 uses the existing dual-slot OTA layout and retains the boot self-test for
 Czech font glyphs, an LCD flush and LVGL startup. Touch remains visible in diagnostics
 but no longer rejects a usable image when it is only transiently unavailable. The SD
 probe runs while a new image is still pending verification; a fatal driver regression
