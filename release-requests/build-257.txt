@@ -1,0 +1,12 @@
+Build: 257
+Version: 0.4.23
+Baseline: exact build 248 source 14b676bf3c476b49e1d3a55d084a3f90405b9140 with release identifiers only
+Source commit: e438048e74e772d69c23f04d3464cff9b55429ef
+Source PR: 223
+CI run: 39989532552
+CI artifact: 12517002888
+ZIP SHA-256: 200e1f855abc5fc6dbce36a10204c2ff69548932df1d3de14db4847ae9af21d2
+Expected size: 1732768
+Expected SHA-256: 09de23f21ee42fcd9408870bfc67116aa10f4ad948519d5d81dde850be45b633
+
+Owner explicitly requested reissuing 248 as a newer OTA version. Publish only after reconstruction, ESP image validation, exact size/SHA-256, application descriptor/version check and public immutable byte verification. Physical touch result remains pending.

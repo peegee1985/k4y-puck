@@ -1,5 +1,12 @@
 # K4Y Puck – changelog
 
+## 0.4.23 (build 257) — 23. 10. 2026
+
+- Na výslovný pokyn vlastníka nové sestavení kompletního základu 248 pouze s novými čísly verze pro OTA.
+- Zkompilované číslo 257 a ESP verze 0.4.23 umožňují aktualizaci z 256 bez opakovaného stahování stejného vydání.
+- Obnovuje se celé chování 248; funkce 249–256 jsou dočasně mimo tento diagnostický základ. Wi-Fi a párování zůstávají zachované.
+- Core, web/TypeScript a ESP-IDF CI prošly. Binární integrita ověřena; výsledek fyzického testu dotyku čeká na vlastníka. Podrobnosti a přesný původ obrazu v [release notes](releases/257.md).
+
 ## 0.4.20 (build 254) — 23. 10. 2026
 
 - Obnova dotyku/IMU po chybě inicializace i opakovaných chybách I2C; transakce a EXIO změny jsou zamčené, displej se při obnově neresetuje.

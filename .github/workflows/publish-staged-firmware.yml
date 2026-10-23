@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "release-requests/build-256.txt"
+      - "release-requests/build-257.txt"
       - ".github/workflows/publish-staged-firmware.yml"
 
 permissions:
@@ -18,12 +18,12 @@ jobs:
   verify-and-publish:
     runs-on: ubuntu-latest
     env:
-      VERSION: "256"
-      VERSION_NAME: "0.4.22"
-      STAGED_PREFIX: "staging/K4Y-Puck-256.bin.xz.part-"
-      RELEASE_ARTIFACT: "K4Y-Puck-256.bin"
-      EXPECTED_SIZE: "1761584"
-      EXPECTED_SHA256: "8278463fc327dd44fdc58fa8557aba5c1b4cacb557cf8efc6bbab379a3c64fd2"
+      VERSION: "257"
+      VERSION_NAME: "0.4.23"
+      STAGED_PREFIX: "staging/K4Y-Puck-257.bin.xz.part-"
+      RELEASE_ARTIFACT: "K4Y-Puck-257.bin"
+      EXPECTED_SIZE: "1732768"
+      EXPECTED_SHA256: "09de23f21ee42fcd9408870bfc67116aa10f4ad948519d5d81dde850be45b633"
 
     steps:
       - name: Checkout exact release commit
@@ -35,9 +35,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat "${STAGED_PREFIX}"* > /tmp/K4Y-Puck-256.bin.xz
-          xz --test /tmp/K4Y-Puck-256.bin.xz
-          xz --decompress --stdout /tmp/K4Y-Puck-256.bin.xz > "$RELEASE_ARTIFACT"
+          cat "${STAGED_PREFIX}"* > /tmp/K4Y-Puck-257.bin.xz
+          xz --test /tmp/K4Y-Puck-257.bin.xz
+          xz --decompress --stdout /tmp/K4Y-Puck-257.bin.xz > "$RELEASE_ARTIFACT"
 
       - name: Verify exact size and SHA-256
         shell: bash
@@ -59,13 +59,13 @@ jobs:
           import sys
           import struct
           image = pathlib.Path(sys.argv[1]).read_bytes()
-          if len(image) != int("1761584"):
+          if len(image) != int("1732768"):
               raise SystemExit("Unexpected firmware size")
           if not image or image[0] != 0xE9:
               raise SystemExit("Invalid ESP application magic")
           if struct.unpack_from("<I", image, 32)[0] != 0xABCD5432:
               raise SystemExit("Invalid ESP app descriptor")
-          if image[48:80].split(b"\0")[0] != b"0.4.22":
+          if image[48:80].split(b"\0")[0] != b"0.4.23":
               raise SystemExit("Unexpected app version")
           if image[80:112].split(b"\0")[0] != b"k4y_puck":
               raise SystemExit("Unexpected project name")

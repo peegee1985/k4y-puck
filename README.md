@@ -4,7 +4,14 @@ Public release channel for verified K4Y Puck firmware images and the OTA manifes
 
 ## Current state
 
-- Release target: build 254 / 0.4.20.
+- Release target: build 257 / 0.4.23.
+- Build 257 reissues the complete build 248 firmware with release identifiers updated
+  so a device on 256 accepts it via OTA without a repeated-install loop.
+- This is the owner's requested physical touch regression test; touch recovery remains
+  unconfirmed. Features introduced in 249–256 are absent. See releases/257.md.
+
+## Earlier release history
+
 - Build 254 retries missing/failed touch and IMU inputs, preserving the SPI display and
   the accepted 251 rotation mapping. I2C transactions and EXIO changes share a mutex.
 - Degree/ellipsis glyphs are present in every Czech font size; pairing and Wi-Fi setup
