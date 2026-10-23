@@ -1,5 +1,12 @@
 # K4Y Puck – changelog
 
+## 0.4.20 (build 254) — 23. 10. 2026
+
+- Obnova dotyku/IMU po chybě inicializace i opakovaných chybách I2C; transakce a EXIO změny jsou zamčené, displej se při obnově neresetuje.
+- Doplněná °/… ve všech velikostech písma, české písmo při párování/Wi-Fi a jasné označení pevného otočení.
+- Dvousekundový PWR s dokončením nastavení a zápisů SD, odpojením karty a blokací při OTA. Na baterii vypnutí západky, při USB hluboký spánek a probuzení PWR.
+- 453 skutečných UI textů, čtyři rotace pixelů/dotyku, ztracený finger-up, testy obnovy a PWR prošly; ESP-IDF 5.5.2 i ostatní CI prošly. Přesný artefakt a fyzicky neověřené body v [release notes](releases/254.md).
+
 ## 0.4.19 (build 253) — 23. 10. 2026
 
 - České hlášky „Nová zakázka“ a „Nová zpráva“, každá se dvěma tóny před i po řeči. Oba WAV soubory byly před vydáním předloženy uživateli k poslechu a odsouhlaseny.

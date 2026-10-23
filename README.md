@@ -4,7 +4,17 @@ Public release channel for verified K4Y Puck firmware images and the OTA manifes
 
 ## Current state
 
-- Release target: build 253 / 0.4.19.
+- Release target: build 254 / 0.4.20.
+- Build 254 retries missing/failed touch and IMU inputs, preserving the SPI display and
+  the accepted 251 rotation mapping. I2C transactions and EXIO changes share a mutex.
+- Degree/ellipsis glyphs are present in every Czech font size; pairing and Wi-Fi setup
+  explicitly use Czech fonts. Fixed rotation modes are labelled PEVNĚ 0° / PEVNĚ 90°.
+- Hold PWR for two seconds, then release: UI stops, current settings and SD data are flushed,
+  SD is unmounted, and the battery latch is released. With USB attached, the MCU deep sleeps
+  until PWR; the charging circuit remains powered. Active OTA excludes shutdown.
+- Actual LVGL text/pixel/touch tests and ESP-IDF 5.5.2 build pass. Recovery and shutdown were
+  fault-tested on the host; physical testing on the owner's board remains pending.
+  See releases/254.md.
 - Build 253 adds the reviewed Czech spoken notifications “Nová zakázka” and “Nová zpráva”,
   each with two tones before and after. Audio streams from embedded flash in 512-byte blocks;
   existing volume, mute and driver-login gates still apply. Downloadable WAV previews are in audio/.

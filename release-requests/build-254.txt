@@ -1,0 +1,7 @@
+Build 254 / 0.4.20
+Source c58b4078491b53fa3e3a2c9223bbeca8e0648b14
+CI 39952548000 / artifact 12500838870
+ZIP SHA256 70a4040ae910217313ef8332e32b31235dcfae766d192719a93ebb0f883b745c
+APP size 1927920
+APP SHA256 af68baf2fcfd866f32afbd4a3962bbce83e1aa77581bfaf2af97d2ba6f1edee7
+Recovery, Czech glyphs and safe PWR shutdown. Publish only verified bytes.
