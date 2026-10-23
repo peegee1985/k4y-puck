@@ -1,0 +1,10 @@
+{
+  "version": 255,
+  "versionName": "0.4.21",
+  "sourceSha": "a057be139889f7ce9b3ede62b985d4e3c5bd6d7a",
+  "sourceRun": 39960274196,
+  "size": 1760800,
+  "sha256": "b21a0809ddefefc11be599a7ba609416be52438e914ae3ed4bce415ee4f9ced2",
+  "artifactId": 12503859783,
+  "diagnostic": true
+}
