@@ -1,7 +1,7 @@
 {
-  "version": 256,
-  "versionName": "0.4.22",
-  "url": "https://raw.githubusercontent.com/peegee1985/k4y-puck/main/K4Y-Puck-256.bin",
-  "sha256": "8278463fc327dd44fdc58fa8557aba5c1b4cacb557cf8efc6bbab379a3c64fd2",
-  "size": 1761584
+  "version": 257,
+  "versionName": "0.4.23",
+  "url": "https://raw.githubusercontent.com/peegee1985/k4y-puck/main/K4Y-Puck-257.bin",
+  "sha256": "09de23f21ee42fcd9408870bfc67116aa10f4ad948519d5d81dde850be45b633",
+  "size": 1732768
 }
