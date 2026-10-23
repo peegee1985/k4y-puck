@@ -1,5 +1,14 @@
 # K4Y Puck – changelog
 
+## 0.4.19 (build 253) — 23. 10. 2026
+
+- České hlášky „Nová zakázka“ a „Nová zpráva“, každá se dvěma tóny před i po řeči. Oba WAV soubory byly před vydáním předloženy uživateli k poslechu a odsouhlaseny.
+- Přehrávání z flash po 512 B, bez požadavku na SD kartu nebo síťové stahování hlasu. Zachováno nastavení hlasitosti, vypnutí zvuku, potlačení upozornění po odhlášení řidiče a omezení opakovaných upozornění.
+- Nastavení → Stav zařízení zobrazuje napětí baterie a každých 15 s obnovuje údaj. Při chybě měření se ukáže „MĚŘENÍ NENÍ“.
+- Audit 97 %: křivka odhadu z napětí má 4,160 V → 97 % a 4,193 V → 100 %. ETA6098 specifikuje CV 4,16–4,24 V. Samotné procento nerozlišuje toleranci nabíječky, chybu ADC, stav dobití ani opotřebení baterie. Nabíjení řídí hardware; bez měření konkrétního kusu se nemění kalibrace ani nevynucuje 100 %.
+- Ověřeny skutečné WAVy, čtyři tónová okna, PCM parser, mezní případy, hlasitost, bateriové regrese a LVGL rozvržení. Přesný CI artefakt a OTA obraz jsou doloženy v [release notes](releases/253.md).
+- Backend se nemění; používá již nasazenou kontrolu přihlášení z 252. Nové párování není potřeba. Fyzické přehrání a údaje konkrétní baterie je třeba ověřit po OTA.
+
 ## 0.4.18 (build 252) — 22. 10. 2026
 
 - Odhlášení řidiče v telefonu uzamkne zakázky a zprávy na Pucku, potlačí jejich upozornění a zobrazí výzvu k přihlášení v telefonu. Přihlášení obnoví přístup bez nového párování.

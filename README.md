@@ -4,7 +4,14 @@ Public release channel for verified K4Y Puck firmware images and the OTA manifes
 
 ## Current state
 
-- Release target: build 252 / 0.4.18.
+- Release target: build 253 / 0.4.19.
+- Build 253 adds the reviewed Czech spoken notifications “Nová zakázka” and “Nová zpráva”,
+  each with two tones before and after. Audio streams from embedded flash in 512-byte blocks;
+  existing volume, mute and driver-login gates still apply. Downloadable WAV previews are in audio/.
+- Device status displays live filtered battery voltage next to its percentage.
+  A 97% reading alone does not diagnose degraded capacity: the ETA6098 CV specification is
+  4.16–4.24 V and this firmware's nominal voltage curve maps 4.160 V to 97%.
+  Charging limits and calibration have not been blindly changed; see releases/253.md.
 - Build 252 follows the driver's phone login: logout locks work/messages and
   job actions; login restores access without pairing. Server checks apply to every action.
   Screensaver ONLINE/OFFLINE is driver login; unverified connectivity shows STAV NEZNÁMÝ.
@@ -49,7 +56,7 @@ Public release channel for verified K4Y Puck firmware images and the OTA manifes
 - Build 237 remains the verified OTA-capable rollback fallback.
 - Build 231 is retained only for forensic comparison and must not be installed.
 
-Build 252 uses the existing dual-slot OTA layout and retains the boot self-test for
+Build 253 uses the existing dual-slot OTA layout and retains the boot self-test for
 Czech font glyphs, an LCD flush and LVGL startup. Touch remains visible in diagnostics
 but no longer rejects a usable image when it is only transiently unavailable. The SD
 probe runs while a new image is still pending verification; a fatal driver regression
