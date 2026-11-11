@@ -1,0 +1,10 @@
+Build 258
+Firmware version 0.4.24
+Functional baseline c58b4078491b53fa3e3a2c9223bbeca8e0648b14 (254)
+Source ac11465e32cf07a11ed716335654ee6fd3053011
+Source PR 237
+Source CI run 43065679130
+Source artifact 13875822701
+Artifact sha256:62b69ad20289d0fb5fe084e3c5369ce3fba8e5d48be607ce8f0cfdf53d17ca41
+APP bytes 1927920
+APP SHA-256 7c415fcdac4158a530d628f422fa90ded1ab9f13b8e7210630d7af66396fd174
