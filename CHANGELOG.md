@@ -1,5 +1,11 @@
 # K4Y Puck – changelog
 
+## 0.4.24 (build 258) — 11. 11. 2026
+
+- Obnoven přesný funkční základ 254. Vyšší číslo buildu umožňuje OTA z 257.
+- Vrací se opravená automatická rotace, samostatný jas spořiče, české hlasové hlášky, SD funkce a bezpečné vypnutí PWR.
+- Sestavení, integrita obrazu a stažení z veřejného OTA kanálu prošly ověřením. Podrobnosti v [poznámkách k vydání](releases/258.md).
+
 ## 0.4.23 (build 257) — 23. 10. 2026
 
 - Na výslovný pokyn vlastníka nové sestavení kompletního základu 248 pouze s novými čísly verze pro OTA.
